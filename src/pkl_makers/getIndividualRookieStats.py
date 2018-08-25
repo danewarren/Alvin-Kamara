@@ -2,7 +2,7 @@
 '''
 Dane Warren
 
-Creates a dataset containing the statlines of rookie seasons of all running backs since 1950. Playoff games included.
+Creates a dictionary containing the statlines of the rookie seasons of the submitted running backs. Playoff games included.
 '''
 import cPickle as pickle
 import json
@@ -54,6 +54,7 @@ def getRookieStats(gameStats, ID):
                 data = resetData()
                 year = int(game.get("year"))
             if year == int(game.get("year")):
+                print(game)
                 data["gamesPlayed"] += 1
                 data["rushing_attempts"] += game.get("rushing_attempts")
                 data["rushing_yards"] += game.get("rushing_yards")
@@ -95,14 +96,15 @@ def main():
     #rb is name, rbs[rb] is ID
     data = {}
     rbData = []
-    for rb in rbs.keys():
-        data = getRookieStats(gameStats, rbs[rb])
-        data["ID"] = rbs[rb]
-        rbData.append(data)
+    data = getRookieStats(gameStats, 23099)
+    data["ID"] = 23099
+    rbData.append(data)
 
+    '''
     file = open("../../datasets/pkl_datasets/rookie_rbStats.pkl","wb")
     pickle.dump(rbData, file)
     file.close()
+    '''
     print(rbData)
 
 if __name__ == "__main__":
