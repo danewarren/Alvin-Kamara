@@ -2,3 +2,5 @@
 *~
 games.json
 profiles.json
+.DS_Store
+rbgames.pkl
